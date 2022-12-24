@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Rfinal</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Rfinal</h1>
+
+
+
+<div id="this-package-is-used-for-data-analyis.-it-can-be-used-in-a-dataframe." class="section level2">
+<h2>This package is used for data analyis. It can be used in a
+dataframe.</h2>
+<ul>
+<li>It has functions for four different usages:
+<ul>
+<li>Read dataset</li>
+<li>Summarize dataset</li>
+<li>Statistical functions(correlation and simple linear regression)</li>
+<li>Visualization (histograms)</li>
+</ul></li>
+</ul>
+</div>
+<div id="there-will-be-examples-showing-how-to-use-the-functions-in-this-package." class="section level2">
+<h2>There will be examples showing how to use the functions in this
+package.</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Rfinal)</span></code></pre></div>
+</div>
+<div id="example-1-get-a-histogram-of-a-continous-variable" class="section level2">
+<h2>Example 1: get a histogram of a continous variable</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_histogram_final</span>(cars, <span class="st">&quot;speed&quot;</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+<pre><code>#&gt; $breaks
+#&gt; [1]  0  5 10 15 20 25
+#&gt; 
+#&gt; $counts
+#&gt; [1]  2  7 17 17  7
+#&gt; 
+#&gt; $density
+#&gt; [1] 0.008 0.028 0.068 0.068 0.028
+#&gt; 
+#&gt; $mids
+#&gt; [1]  2.5  7.5 12.5 17.5 22.5
+#&gt; 
+#&gt; $xname
+#&gt; [1] &quot;df[, col]&quot;
+#&gt; 
+#&gt; $equidist
+#&gt; [1] TRUE
+#&gt; 
+#&gt; attr(,&quot;class&quot;)
+#&gt; [1] &quot;histogram&quot;</code></pre>
+</div>
+<div id="example-2-get-data-summaries" class="section level2">
+<h2>Example 2: get data summaries</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_summarize_final</span>(cars, <span class="st">&quot;speed&quot;</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Mean       SD Median Max Min</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 15.4 5.287644     15  25   4</span></span></code></pre></div>
+<p>It will return the mean, standard deviation, median, maximum and
+minimum of the variable.</p>
+</div>
+<div id="example-3-get-a-simple-linear-regression-model-between-two-variables" class="section level2">
+<h2>Example 3: get a simple linear regression model between two
+variables</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_lm_final</span>(cars, <span class="st">&quot;speed&quot;</span>, <span class="st">&quot;dist&quot;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Call:</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; lm(formula = df[, col_y] ~ df[, col_x], data = df)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residuals:</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     Min      1Q  Median      3Q     Max </span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; -7.5293 -2.1550  0.3615  2.4377  6.4179 </span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Coefficients:</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; (Intercept)  8.28391    0.87438   9.474 1.44e-12 ***</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; df[, col_x]  0.16557    0.01749   9.464 1.49e-12 ***</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Residual standard error: 3.156 on 48 degrees of freedom</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Multiple R-squared:  0.6511, Adjusted R-squared:  0.6438 </span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; F-statistic: 89.57 on 1 and 48 DF,  p-value: 1.49e-12</span></span></code></pre></div>
+<p>It returns the parameter estimates and other statistics of the model.
+The simple linear regression model between speed and dist is: <span class="math display">\[
+speed = 8.28391 + 0.16557 * dist
+\]</span></p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

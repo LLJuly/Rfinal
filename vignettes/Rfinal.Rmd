@@ -1,0 +1,52 @@
+---
+title: "Rfinal"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Rfinal}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## This package is used for data analyis. It can be used in a dataframe.
+- It has functions for four different usages:
+  + Read dataset
+  + Summarize dataset
+  + Statistical functions(correlation and simple linear regression)
+  + Visualization (histograms)
+
+
+## There will be examples showing how to use the functions in this package.
+
+```{r setup}
+library(Rfinal)
+```
+
+## Example 1: get a histogram of a continous variable
+
+```{r}
+get_histogram_final(cars, "speed")
+```
+
+## Example 2: get data summaries
+```{r}
+get_summarize_final(cars, "speed")
+```
+It will return the mean, standard deviation, median, maximum and minimum of the variable.
+
+
+## Example 3: get a simple linear regression model between two variables
+```{r}
+get_lm_final(cars, "speed", "dist")
+```
+It returns the parameter estimates and other statistics of the model. The simple 
+linear regression model between speed and dist is:
+$$
+speed = 8.28391 + 0.16557 * dist
+$$

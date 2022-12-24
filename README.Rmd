@@ -1,0 +1,41 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# Rfinal
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of Rfinal is to make data analysis easier.
+
+## Installation
+
+You can install the development version of Rfinal like so: 
+
+``` r
+devtools::install_github(“LLJuly/Rfinal”)
+```
+
+## Example
+
+This is a basic example which shows you how to use Rfinal to get a histogram:
+
+```{r example}
+library(Rfinal)
+get_histogram_final(cars, "speed")
+```
+
+
+
